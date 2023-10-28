@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { SignInButton, SignUpButton, UserButton, auth } from "@clerk/nextjs";
 import { Logo } from "./logo";
+import Link from "next/link";
 
 export const LandingNavbar = () => {
   const { userId } = auth();
@@ -12,7 +13,9 @@ export const LandingNavbar = () => {
       <div className="md:ml-auto md:justify-end justify-end  w-full flex items-center gap-x-2">
         {userId ? (
           <>
-            <Button variant="ghost">Enter Bob</Button>
+            <Link href="/home">
+              <Button variant="ghost">Enter Bob</Button>
+            </Link>
             <UserButton afterSignOutUrl="/" />
           </>
         ) : (
