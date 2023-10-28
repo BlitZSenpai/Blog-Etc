@@ -1,8 +1,8 @@
 "use server";
 
+import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { SignInButton, SignUpButton, UserButton, auth } from "@clerk/nextjs";
-import { Logo } from "./logo";
 import Link from "next/link";
 
 export const LandingNavbar = () => {

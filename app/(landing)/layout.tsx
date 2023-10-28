@@ -1,4 +1,4 @@
-import { LandingNavbar } from "./_components/navbar";
+import { LandingNavbar } from "./_components/landingnavbar";
 
 const LandingPageLayout = ({ children }: { children: React.ReactNode }) => {
   return (
