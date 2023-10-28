@@ -17,12 +17,12 @@ export const LandingNavbar = () => {
           </>
         ) : (
           <>
-            <SignUpButton mode="modal">
-              <Button size="sm">Sign up</Button>
-            </SignUpButton>
             <SignInButton mode="modal">
               <Button size="sm">Sign in</Button>
             </SignInButton>
+            <SignUpButton mode="modal">
+              <Button size="sm">Register</Button>
+            </SignUpButton>
           </>
         )}
       </div>
