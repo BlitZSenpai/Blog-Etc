@@ -7,7 +7,7 @@ import { Logo } from "./logo";
 export const LandingNavbar = () => {
   const { userId } = auth();
   return (
-    <div className="w-full flex fixed top-0 bg-background items-center p-6 ">
+    <div className="w-full flex fixed top-0 bg-background items-center p-6 md:px-32 px-16 border-b border-b-black">
       <Logo />
       <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
         {userId ? (
