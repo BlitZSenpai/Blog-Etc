@@ -34,8 +34,8 @@ const LandingPage = () => {
           </div>
         )}
       </div>
-      <div className="flex items-start justify-start absolute top-20 right-44">
-        <Image src="/text.svg" height="450" width="450" alt="text" className="hidden lg:block" />
+      <div className="flex items-start justify-start absolute top-12 right-44">
+        <Image src="/hero.svg" height="450" width="450" alt="text" className="hidden lg:block" />
       </div>
     </div>
   );
