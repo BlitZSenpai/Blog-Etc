@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { SignInButton, auth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 const LandingPage = () => {
   const { userId } = auth();
