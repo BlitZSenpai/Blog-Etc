@@ -6,7 +6,7 @@ export const PostButton = () => {
   return (
     <div className="flex">
       <Link href="/home">
-        <Button size="sm" className="pl-4">
+        <Button size="sm" className="pl-4 text-white" variant="blue">
           <p className="mr-2">Post</p>
           <Image src="/post.svg" alt="post" width={13} height={13} />
         </Button>
