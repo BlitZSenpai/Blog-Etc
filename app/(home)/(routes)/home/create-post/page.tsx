@@ -1,3 +1,5 @@
+"use client";
+
 const CreatePost = () => {
   return (
     <div className="p-5">
