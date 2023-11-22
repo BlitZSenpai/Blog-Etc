@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export const PostButton = () => {
   return (
-    <div className="flex">
+    <div className="flex mr-4">
       <Link href="/home">
-        <Button size="sm" className="pl-4 text-white" variant="blue">
-          <p className="mr-2">Post</p>
-          <Image src="/post.svg" alt="post" width={13} height={13} />
+        <Button size="sm" className="pl-4 border-black" variant="outline">
+          <p>Post</p>
+          <ArrowRight className="w-4 h-4 ml-0.5" />
         </Button>
       </Link>
     </div>
