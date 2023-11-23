@@ -1,7 +1,6 @@
 "use client";
 
 import { FormComponent } from "@/components/formcomponent";
-import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
 const CreatePost = () => {
@@ -9,7 +8,7 @@ const CreatePost = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <div className="p-10 flex flex-col items-center justify-start w-full">
+    <div className="p-10 relative md:max-w-3xl lg:mx-w-4xl mx-auto">
       <FormComponent />
     </div>
   );

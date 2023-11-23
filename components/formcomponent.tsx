@@ -1,11 +1,12 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { Form, FormControl, FormField, FormItem } from "./ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
+import Editor from "./editor";
 
 const formSchema = z.object({
   title: z.string().min(1).max(50),
@@ -34,7 +35,11 @@ export const FormComponent = () => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Title" className="border-none" {...field} autoFocus />
+                <Input
+                  placeholder="Title"
+                  className="border-none text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
+                  {...field}
+                />
               </FormControl>
             </FormItem>
           )}
@@ -45,7 +50,11 @@ export const FormComponent = () => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Textarea className="resize-none" placeholder="Summarize your story" {...field} />
+                <Textarea
+                  className="resize-none border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                  placeholder="Summarize your story"
+                  {...field}
+                />
               </FormControl>
             </FormItem>
           )}
@@ -54,9 +63,10 @@ export const FormComponent = () => {
           control={form.control}
           name="description"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="absolute left-0 w-full">
+              <FormLabel className="pl-14">Description</FormLabel>
               <FormControl>
-                <Textarea className="resize-none" placeholder="Tell your story..." {...field} />
+                <Editor {...field} />
               </FormControl>
             </FormItem>
           )}
