@@ -16,11 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
       <html lang="en">
-        <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
-          <body className={inter.className}>
-            <EdgeStoreProvider>{children}</EdgeStoreProvider>
-          </body>
-        </ThemeProvider>
+        <body className={inter.className}>
+          <EdgeStoreProvider>{children}</EdgeStoreProvider>
+        </body>
       </html>
     </ClerkProvider>
   );
