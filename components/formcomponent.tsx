@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "./ui/input";
@@ -24,7 +24,9 @@ export const FormComponent = () => {
     },
   });
 
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    //add submit func and post creation action
+  };
 
   return (
     <Form {...form}>
@@ -37,7 +39,7 @@ export const FormComponent = () => {
               <FormControl>
                 <Input
                   placeholder="Title"
-                  className="border-none text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
+                  className="border-none focus-visible:ring-0 focus-visible:ring-offset-0"
                   {...field}
                 />
               </FormControl>
@@ -64,7 +66,7 @@ export const FormComponent = () => {
           name="description"
           render={({ field }) => (
             <FormItem className="absolute left-0 w-full">
-              <FormLabel className="pl-14">Description</FormLabel>
+              <FormLabel className="pl-[3.2rem] text-md">Description:</FormLabel>
               <FormControl>
                 <Editor {...field} />
               </FormControl>
