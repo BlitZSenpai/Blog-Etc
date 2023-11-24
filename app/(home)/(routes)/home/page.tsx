@@ -1,5 +1,3 @@
-"use client";
-
 const HomePage = () => {
   return (
     <div className="p-5">
