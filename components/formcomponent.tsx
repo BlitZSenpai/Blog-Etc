@@ -10,6 +10,8 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { createPost } from "@/lib/actions/createpost";
 import { Loader2 } from "lucide-react";
+import { Button } from "./ui/button";
+import { PostButton } from "@/app/(home)/(routes)/home/_components/postbutton";
 
 const formSchema = z.object({
   title: z.string().min(1).max(50),
@@ -39,7 +41,7 @@ export const FormComponent = () => {
   if (isSubmitting) {
     return (
       <div className="flex h-full w-full items-center justify-center">
-        <Loader2 className="w-4 h-4" />
+        <Loader2 className="w-4 h-4 animate-spin" />
       </div>
     );
   }
@@ -89,6 +91,9 @@ export const FormComponent = () => {
             </FormItem>
           )}
         />
+        <div className="absolute -right-20 -bottom-52">
+          <PostButton />
+        </div>
       </form>
     </Form>
   );
