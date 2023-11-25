@@ -1,12 +1,15 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
-import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import Editor from "./editor";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import Editor from "./editor";
+import { createPost } from "@/lib/actions/createpost";
+import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
   title: z.string().min(1).max(50),
@@ -15,6 +18,7 @@ const formSchema = z.object({
 });
 
 export const FormComponent = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -24,9 +28,21 @@ export const FormComponent = () => {
     },
   });
 
-  const onSubmit = () => {
-    //add submit func and post creation action
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    setIsSubmitting(true);
+
+    await createPost(data);
+
+    setIsSubmitting(false);
   };
+
+  if (isSubmitting) {
+    return (
+      <div className="flex h-full w-full items-center justify-center">
+        <Loader2 className="w-4 h-4" />
+      </div>
+    );
+  }
 
   return (
     <Form {...form}>

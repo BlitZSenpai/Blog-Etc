@@ -1,13 +1,13 @@
 "use server";
 
 import { Logo } from "@/components/logo";
-import { CurrentUser } from "@/lib/actions/createUser";
+import { createUser } from "@/lib/actions/createUser";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { NavbarItems } from "./navbaritems";
 
 export const Navbar = async () => {
-  const User = await CurrentUser();
+  const User = await createUser();
 
   if (!User) {
     redirect("/sign-in");

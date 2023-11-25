@@ -5,8 +5,8 @@ import { db } from "../prismadb";
 
 interface createPostProps {
   title: string;
-  summary: string;
-  description: string;
+  summary?: string;
+  description?: string;
 }
 
 export const createPost = async ({ title, summary, description }: createPostProps) => {
