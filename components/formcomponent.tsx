@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import Editor from "./editor";
@@ -10,8 +10,8 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { createPost } from "@/lib/actions/createpost";
 import { Loader2 } from "lucide-react";
-import { Button } from "./ui/button";
 import { PostButton } from "@/app/(home)/(routes)/home/_components/postbutton";
+import { BlockNoteEditor } from "@blocknote/core";
 
 const formSchema = z.object({
   title: z.string().min(1).max(50),
@@ -30,11 +30,21 @@ export const FormComponent = () => {
     },
   });
 
+  const [client, setClient] = useState<boolean>(false);
+
+  const onEditorChange = useCallback(
+    (blocknote: BlockNoteEditor) => {
+      form.setValue("description", JSON.stringify(blocknote.topLevelBlocks, null));
+    },
+    [form]
+  );
+
+  useEffect(() => setClient(true), []);
+  if (!client) return null;
+
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
-
     await createPost(data);
-
     setIsSubmitting(false);
   };
 
@@ -82,11 +92,11 @@ export const FormComponent = () => {
         <FormField
           control={form.control}
           name="description"
-          render={({ field }) => (
+          render={() => (
             <FormItem className="absolute left-0 w-full">
               <FormLabel className="pl-[3.2rem] text-md">Description:</FormLabel>
               <FormControl>
-                <Editor {...field} />
+                <Editor onEditorChange={onEditorChange} />
               </FormControl>
             </FormItem>
           )}

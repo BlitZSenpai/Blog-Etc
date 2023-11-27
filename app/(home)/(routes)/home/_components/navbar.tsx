@@ -1,18 +1,8 @@
-"use server";
-
 import { Logo } from "@/components/logo";
-import { createUser } from "@/lib/actions/createUser";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { NavbarItems } from "./navbaritems";
 
 export const Navbar = async () => {
-  const User = await createUser();
-
-  if (!User) {
-    redirect("/sign-in");
-  }
-
   return (
     <div className="w-full flex fixed top-0 bg-background justify-between p-6 px-20 border-b border-b-black">
       <Link href="/home">

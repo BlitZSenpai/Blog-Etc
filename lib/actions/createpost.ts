@@ -6,19 +6,17 @@ import { db } from "../prismadb";
 interface createPostProps {
   title: string;
   summary?: string;
-  description?: string;
+  description: string;
 }
 
 export const createPost = async ({ title, summary, description }: createPostProps) => {
   const user = await currentUser();
 
-  if (!user) {
-    throw new Error("Unauthorized");
-  }
+  if (!user) throw new Error("Unauthorized");
 
   const post = await db.posts.create({
     data: {
-      userId: user.id,
+      clerkId: user.id,
       title,
       summary,
       description,
