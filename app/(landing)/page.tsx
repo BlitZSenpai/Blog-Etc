@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const LandingPage = async () => {
-  const user = currentUser();
+  const { userId } = auth();
   return (
     <div className="flex justify-between gap-y-4 md:px-32 px-16 py-40 relative">
       <div className="max-w-3xl space-y-5 flex-col  justify-center">
@@ -15,7 +15,7 @@ const LandingPage = async () => {
           Discover stories, thinking, and expertise <br />
           from writers on any topic
         </h2>
-        {!!user ? (
+        {userId ? (
           <div>
             <Link href="/home">
               <Button size="lg" className="mt-2 text-lg">

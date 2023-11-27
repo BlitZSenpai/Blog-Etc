@@ -10,8 +10,11 @@ import {
 import Image from "next/image";
 import { navbarProps } from "./navbaritems";
 import Link from "next/link";
+import { SignOutButton } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 export const UserNavbar = ({ imageUrl, name, email }: navbarProps) => {
+  const router = useRouter();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="overflow-visible">
@@ -32,7 +35,21 @@ export const UserNavbar = ({ imageUrl, name, email }: navbarProps) => {
         </div>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href={`/${name.replace(/ /g, "").toLocaleLowerCase()}/posts`}>Your posts</Link>
+          <Link className="cursor-pointer" href={`/${name.replace(/ /g, "").toLocaleLowerCase()}/posts`}>
+            Your posts
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <Link className="cursor-pointer" href={"/home/create-post"}>
+            Create post
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <p className="w-full cursor-pointer pl-2.5">
+            <SignOutButton signOutCallback={() => router.push("/")}>Log out</SignOutButton>
+          </p>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
