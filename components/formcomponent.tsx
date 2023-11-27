@@ -10,7 +10,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { createPost } from "@/lib/actions/createpost";
 import { Loader2 } from "lucide-react";
-import { PostButton } from "@/app/(home)/(routes)/home/_components/postbutton";
+import { PostButton } from "@/app/(home)/(routes)/_components/postbutton";
 import { BlockNoteEditor } from "@blocknote/core";
 import { useRouter } from "next/navigation";
 
