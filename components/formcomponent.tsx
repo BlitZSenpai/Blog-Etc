@@ -12,6 +12,7 @@ import { createPost } from "@/lib/actions/createpost";
 import { Loader2 } from "lucide-react";
 import { PostButton } from "@/app/(home)/(routes)/home/_components/postbutton";
 import { BlockNoteEditor } from "@blocknote/core";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   title: z.string().min(1).max(50),
@@ -21,6 +22,7 @@ const formSchema = z.object({
 
 export const FormComponent = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,8 +46,11 @@ export const FormComponent = () => {
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
-    await createPost(data);
+    const post = await createPost(data);
+
     setIsSubmitting(false);
+
+    router.push(`/post/${post.id}`);
   };
 
   if (isSubmitting) {
