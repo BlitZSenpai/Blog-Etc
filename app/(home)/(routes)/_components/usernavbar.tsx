@@ -4,10 +4,12 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import { navbarProps } from "./navbaritems";
+import Link from "next/link";
 
 export const UserNavbar = ({ imageUrl, name, email }: navbarProps) => {
   return (
@@ -28,6 +30,10 @@ export const UserNavbar = ({ imageUrl, name, email }: navbarProps) => {
             {email && <p className="truncate w-[200px] text-sm text-zinc-700">{email}</p>}
           </div>
         </div>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <Link href={`/${name.replace(/ /g, "").toLocaleLowerCase()}/posts`}>Your posts</Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
