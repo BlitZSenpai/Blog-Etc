@@ -1,12 +1,12 @@
 "use server";
 
 import { Button } from "@/components/ui/button";
-import { SignInButton, auth } from "@clerk/nextjs";
+import { SignInButton, auth, currentUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 
-const LandingPage = () => {
-  const { userId } = auth();
+const LandingPage = async () => {
+  const user = currentUser();
   return (
     <div className="flex justify-between gap-y-4 md:px-32 px-16 py-40 relative">
       <div className="max-w-3xl space-y-5 flex-col  justify-center">
@@ -15,7 +15,7 @@ const LandingPage = () => {
           Discover stories, thinking, and expertise <br />
           from writers on any topic
         </h2>
-        {userId ? (
+        {!!user ? (
           <div>
             <Link href="/home">
               <Button size="lg" className="mt-2 text-lg">

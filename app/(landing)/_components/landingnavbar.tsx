@@ -2,16 +2,16 @@
 
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
-import { SignInButton, SignUpButton, UserButton, auth } from "@clerk/nextjs";
+import { SignInButton, SignUpButton, UserButton, currentUser } from "@clerk/nextjs";
 import Link from "next/link";
 
 export const LandingNavbar = () => {
-  const { userId } = auth();
+  const user = currentUser();
   return (
     <div className="w-full flex fixed top-0 bg-background items-center p-6 md:px-32 px-16 border-b border-b-black">
       <Logo />
       <div className="md:ml-auto md:justify-end justify-end  w-full flex items-center gap-x-2">
-        {userId ? (
+        {!!user ? (
           <>
             <Link href="/home">
               <Button variant="ghost">Enter Bob</Button>
