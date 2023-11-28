@@ -35,7 +35,7 @@ export const UserNavbar = ({ imageUrl, name, email }: navbarProps) => {
         </div>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link className="cursor-pointer" href={`/${name.replace(/ /g, "").toLocaleLowerCase()}/posts`}>
+          <Link className="cursor-pointer" href={`/${name.toLocaleLowerCase()}/posts`}>
             Your posts
           </Link>
         </DropdownMenuItem>

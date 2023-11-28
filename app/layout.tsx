@@ -1,10 +1,9 @@
+import { EdgeStoreProvider } from "@/lib/edgestore";
+import { cn } from "@/lib/utils";
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
-import { EdgeStoreProvider } from "@/lib/edgestore";
-import { ThemeProvider } from "@/components/theme-provider";
-import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 

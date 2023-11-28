@@ -12,10 +12,11 @@ interface createPostProps {
 export const createPost = async ({ title, summary, description }: createPostProps) => {
   const user = await currentUser();
 
-  if (!user) throw new Error("Unauthorized");
+  if (!user || !user.username) throw new Error("Unauthorized");
 
   const post = await db.posts.create({
     data: {
+      username: user.username,
       clerkId: user.id,
       title,
       summary,

@@ -14,7 +14,7 @@ export const Navbar = async () => {
         <NavbarItems
           imageUrl={user?.imageUrl}
           email={user?.emailAddresses[0].emailAddress}
-          name={`${user?.firstName} ${user?.lastName}`}
+          name={`${user?.username}`}
         />
       </div>
     </div>
