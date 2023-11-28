@@ -1,4 +1,5 @@
 import { Posts } from "@prisma/client";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
 interface PostProps {
   title: string;
@@ -13,10 +14,14 @@ export const PostCard = ({
 }: Pick<Posts, "summary" | "description" | "title">) => {
   //   const description1 = JSON.parse(description);
   return (
-    <div>
-      <p>{title}</p>
-      <p>{summary}</p>
-      <p>{description}</p>
-    </div>
+    <Card className="max-w-2xl">
+      <CardHeader>
+        <CardTitle>{title}</CardTitle>
+        <CardDescription>{summary}</CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-col items-center justify-center">
+        <p>{description}</p>
+      </CardContent>
+    </Card>
   );
 };
