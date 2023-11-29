@@ -23,7 +23,7 @@ const YourPostsPage = async ({ params }: YourPostsPageProps) => {
     />
   ));
 
-  return <div>{post}</div>;
+  return <div className="bg-background h-full flex flex-col justify-center items-center ">{post}</div>;
 };
 
 export default YourPostsPage;

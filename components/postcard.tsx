@@ -17,7 +17,7 @@ export const PostCard = ({
 }) => {
   //   const description1 = JSON.parse(description);
   return (
-    <div className="p-3 flex flex-col max-w-2xl max-h-32 mt-2 border-b-2 bg-background">
+    <div className="p-3 flex flex-col max-w-2xl items-center justify-center mt-2 border-b-2 bg-background">
       <Link href={`/post/${id}`}>
         <div className="flex flex-row gap-2 mb-2  items-center">
           <Avatar className="h-8 w-8">

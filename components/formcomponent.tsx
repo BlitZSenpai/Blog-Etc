@@ -1,21 +1,21 @@
 "use client";
 
+import { PostButton } from "@/app/(home)/(routes)/_components/postbutton";
+import { createPost } from "@/lib/actions/createpost";
+import { BlockNoteEditor } from "@blocknote/core";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCallback, useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import Editor from "./editor";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { createPost } from "@/lib/actions/createpost";
-import { Loader2 } from "lucide-react";
-import { PostButton } from "@/app/(home)/(routes)/_components/postbutton";
-import { BlockNoteEditor } from "@blocknote/core";
-import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
-  title: z.string().min(1).max(50),
+  title: z.string(),
   summary: z.string().optional(),
   description: z.string(),
 });
@@ -32,17 +32,12 @@ export const FormComponent = () => {
     },
   });
 
-  const [client, setClient] = useState<boolean>(false);
-
   const onEditorChange = useCallback(
     (blocknote: BlockNoteEditor) => {
       form.setValue("description", JSON.stringify(blocknote.topLevelBlocks, null));
     },
     [form]
   );
-
-  useEffect(() => setClient(true), []);
-  if (!client) return null;
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
