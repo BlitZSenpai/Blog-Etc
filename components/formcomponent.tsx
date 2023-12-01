@@ -13,7 +13,6 @@ import Editor from "./editor";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { currentUser } from "@clerk/nextjs";
 
 const formSchema = z.object({
   title: z.string(),
@@ -21,8 +20,7 @@ const formSchema = z.object({
   description: z.string(),
 });
 
-export const FormComponent = async () => {
-  const user = await currentUser();
+export const FormComponent = ({ username }: { username: string }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -36,7 +34,7 @@ export const FormComponent = async () => {
 
   const onEditorChange = useCallback(
     (blocknote: BlockNoteEditor) => {
-      form.setValue("description", JSON.stringify(blocknote.topLevelBlocks, null));
+      form.setValue("description", JSON.stringify(blocknote.topLevelBlocks, null, 2));
     },
     [form]
   );
@@ -47,7 +45,7 @@ export const FormComponent = async () => {
 
     setIsSubmitting(false);
 
-    router.push(`/${user?.username}/post/${post.id}`);
+    router.push(`/${username}/post/${post.id}`);
   };
 
   if (isSubmitting) {
