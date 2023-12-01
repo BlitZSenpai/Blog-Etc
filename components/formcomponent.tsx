@@ -13,6 +13,7 @@ import Editor from "./editor";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
+import { currentUser } from "@clerk/nextjs";
 
 const formSchema = z.object({
   title: z.string(),
@@ -20,7 +21,8 @@ const formSchema = z.object({
   description: z.string(),
 });
 
-export const FormComponent = () => {
+export const FormComponent = async () => {
+  const user = await currentUser();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -45,7 +47,7 @@ export const FormComponent = () => {
 
     setIsSubmitting(false);
 
-    router.push(`/post/${post.id}`);
+    router.push(`/${user?.username}/post/${post.id}`);
   };
 
   if (isSubmitting) {
