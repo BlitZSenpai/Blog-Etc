@@ -18,12 +18,15 @@ const YourPostsPage = async ({ params }: YourPostsPageProps) => {
       key={post.id}
       id={post.id}
       title={post.title}
-      description={post.description}
       summary={post.summary}
     />
   ));
 
-  return <div className="bg-background h-full flex flex-col justify-center items-center ">{post}</div>;
+  return (
+    <div className="bg-background flex flex-col w-full overflow-scroll justify-center items-center">
+      {post}
+    </div>
+  );
 };
 
 export default YourPostsPage;

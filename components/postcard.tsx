@@ -7,18 +7,19 @@ import { format } from "date-fns";
 export const PostCard = ({
   title,
   summary,
-  description,
   id,
   username,
   createdAt,
   imageUrl,
-}: Pick<Posts, "summary" | "description" | "title" | "id" | "username" | "createdAt"> & {
+}: Pick<Posts, "summary" | "title" | "id" | "username" | "createdAt"> & {
   imageUrl: string;
 }) => {
   //   const description1 = JSON.parse(description);
   return (
-    <div className="p-3 flex flex-col max-w-2xl items-center justify-center mt-2 border-b-2 bg-background">
-      <Link href={`/post/${id}`}>
+    <Link
+      href={`/post/${id}`}
+      className="p-3 flex flex-col h-full max-w-3xl w-full items-start justify-center mt-2 border-b-[1px] bg-background">
+      <div>
         <div className="flex flex-row gap-2 mb-2  items-center">
           <Avatar className="h-8 w-8">
             {imageUrl ? (
@@ -30,9 +31,11 @@ export const PostCard = ({
         </div>
         <div className="pb-2 pl-1">
           <h1 className="font-bold text-xl mb-2">{title}</h1>
-          <p className="truncate">{summary}</p>
+          <p className="overflow-hidden  text-ellipsis line-clamp-2 leading-[24px] m-0 break-words">
+            {summary}
+          </p>
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
