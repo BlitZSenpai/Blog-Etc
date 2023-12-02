@@ -21,6 +21,7 @@ export const createPost = async ({ title, summary, description }: createPostProp
       title,
       summary,
       description,
+      imageUrl: user.imageUrl,
     },
   });
 

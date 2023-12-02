@@ -19,6 +19,7 @@ model Posts {
   updatedAt   DateTime @updatedAt
   clerkId     String
   username    String
+  imageUrl    String
 
   @@index([clerkId, username])
 }
