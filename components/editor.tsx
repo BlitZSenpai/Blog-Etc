@@ -7,9 +7,10 @@ import { useEffect, useState } from "react";
 
 interface Props {
   onEditorChange: (blocknote: BlockNoteEditor) => void;
+  editable?: boolean;
 }
 
-const Editor = ({ onEditorChange }: Props) => {
+const Editor = ({ onEditorChange, editable }: Props) => {
   const [client, setClient] = useState(false);
 
   useEffect(() => {
@@ -17,6 +18,7 @@ const Editor = ({ onEditorChange }: Props) => {
   }, []);
 
   const editor: BlockNoteEditor = useBlockNote({
+    editable,
     onEditorContentChange: onEditorChange,
   });
   if (!client) {

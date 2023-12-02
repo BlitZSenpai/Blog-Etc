@@ -6,13 +6,14 @@ import { BlockNoteEditor } from "@blocknote/core";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import Editor from "./editor";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
+import dynamic from "next/dynamic";
 
 const formSchema = z.object({
   title: z.string(),
@@ -22,6 +23,8 @@ const formSchema = z.object({
 
 export const FormComponent = ({ username }: { username: string }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const Editor = useMemo(() => dynamic(() => import("@/components/editor"), { ssr: false }), []);
+
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
