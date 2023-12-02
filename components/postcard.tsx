@@ -11,9 +11,7 @@ export const PostCard = ({
   username,
   createdAt,
   imageUrl,
-}: Pick<Posts, "summary" | "title" | "id" | "username" | "createdAt"> & {
-  imageUrl: string;
-}) => {
+}: Pick<Posts, "summary" | "title" | "id" | "username" | "createdAt" | "imageUrl"> & {}) => {
   //   const description1 = JSON.parse(description);
   return (
     <Link

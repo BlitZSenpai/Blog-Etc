@@ -25,8 +25,8 @@ const PostPage = async ({ params }: PostPageProps) => {
           <CardDescription className="text-xl mb-3">{post?.summary}</CardDescription>
           <div className="flex items-center gap-2 space-x-1 my-2">
             <Avatar className="h-8 w-8">
-              {user?.imageUrl ? (
-                <Image src={user?.imageUrl} alt="profile picture" fill referrerPolicy="no-referrer" />
+              {post?.imageUrl ? (
+                <Image src={post.imageUrl} alt="profile picture" fill referrerPolicy="no-referrer" />
               ) : null}
             </Avatar>
             <p className="text-lg text-black">{post?.username} · </p>
