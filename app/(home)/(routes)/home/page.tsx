@@ -17,7 +17,7 @@ const HomePage = async () => {
           id={post.id}
           summary={post.summary}
           createdAt={post.createdAt}
-          imageUrl={user?.imageUrl}
+          imageUrl={post.imageUrl}
           username={post.username}
         />
       ))}
