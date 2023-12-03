@@ -18,25 +18,19 @@ export const PostCard = ({
 }: Pick<Posts, "summary" | "title" | "id" | "username" | "createdAt" | "imageUrl"> & {}) => {
   const router = useRouter();
 
-  const handleProfileClick = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-
-    router.push(`/${username}/posts`);
-  };
-
   return (
     <div className="p-3 flex flex-col h-full max-w-3xl w-full items-start justify-center mt-2 border-b-[1px] bg-background">
       <div className="flex flex-row gap-2 mb-2  items-center">
-        <div
-          onClick={() => handleProfileClick}
-          className="flex flex-row gap-2 items-center hover:cursor-pointer">
+        <Link
+          href={`/${username}/posts`}
+          className="flex flex-row gap-2 items-center hover:cursor-pointer justify-between">
           <Avatar className="h-8 w-8">
             {imageUrl ? (
               <Image src={imageUrl} alt="profile picture" fill referrerPolicy="no-referrer" />
             ) : null}
           </Avatar>
           <h3 className="text-lg">{username} · </h3>
-        </div>
+        </Link>
         <span className="text-zinc-600 text-sm"> {format(new Date(createdAt), "MMM dd")}</span>
         <More />
       </div>
