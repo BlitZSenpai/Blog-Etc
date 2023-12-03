@@ -5,15 +5,14 @@ import { createPost } from "@/lib/actions/createpost";
 import { BlockNoteEditor } from "@blocknote/core";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import Editor from "./editor";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import dynamic from "next/dynamic";
 
 const formSchema = z.object({
   title: z.string(),
@@ -46,9 +45,8 @@ export const FormComponent = ({ username }: { username: string }) => {
     setIsSubmitting(true);
     const post = await createPost(data);
 
-    setIsSubmitting(false);
-
     router.push(`/${username}/post/${post.id}`);
+    setIsSubmitting(false);
   };
 
   if (isSubmitting) {
