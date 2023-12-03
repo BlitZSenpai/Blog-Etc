@@ -5,7 +5,8 @@ import { currentUser } from "@clerk/nextjs";
 const HomePage = async () => {
   const user = await currentUser();
 
-  if (!user) return null;
+  if (!user) throw new Error("Unauthorized");
+
   const posts = await db.posts.findMany();
 
   return (
@@ -19,6 +20,7 @@ const HomePage = async () => {
           createdAt={post.createdAt}
           imageUrl={post.imageUrl}
           username={post.username}
+          currentUsername={user?.username!}
         />
       ))}
     </div>

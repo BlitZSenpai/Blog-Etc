@@ -8,6 +8,7 @@ import { Avatar } from "./ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { MoreHorizontal, Trash } from "lucide-react";
 import { deletePost } from "@/lib/actions/deletepost";
+import { Button } from "./ui/button";
 
 export const PostCard = ({
   title,
@@ -16,7 +17,10 @@ export const PostCard = ({
   username,
   createdAt,
   imageUrl,
-}: Pick<Posts, "summary" | "title" | "id" | "username" | "createdAt" | "imageUrl"> & {}) => {
+  currentUsername,
+}: Pick<Posts, "summary" | "title" | "id" | "username" | "createdAt" | "imageUrl"> & {
+  currentUsername: string;
+}) => {
   return (
     <div className="p-3 flex flex-col h-full max-w-3xl w-full items-start justify-center mt-2 border-b-[1px] bg-background">
       <div className="flex flex-row gap-2 mb-2  items-center">
@@ -34,15 +38,22 @@ export const PostCard = ({
         <div className="ml-auto flex items-center">
           <DropdownMenu>
             <DropdownMenuTrigger onClick={(e) => e.stopPropagation} asChild>
-              <div role="button" className="hover:text-zinc-950 text-zinc-500 h-full ml-auto rounded-sm">
+              <Button
+                variant="ghost"
+                className=" h-full hover:text-zinc-950 text-zinc-600  ml-auto rounded-sm">
                 <MoreHorizontal className="h-5 w-5" />
-              </div>
+              </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="bg-white">
-              <DropdownMenuItem onClick={() => deletePost(id)}>
-                <Trash className="h-4 w-4 mr-2" />
-                Delete
-              </DropdownMenuItem>
+              {username === currentUsername && (
+                <DropdownMenuItem onClick={() => deletePost(id)}>
+                  <p className="flex hover:cursor-pointer">
+                    <Trash className="h-4 w-4 mr-2" />
+                    Delete
+                  </p>
+                </DropdownMenuItem>
+              )}
+              <DropdownMenuItem>Show less posts</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
