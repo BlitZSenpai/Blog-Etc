@@ -25,11 +25,7 @@ const YourPostsPage = async ({ params }: YourPostsPageProps) => {
     />
   ));
 
-  return (
-    <div className="bg-background flex flex-col w-full overflow-scroll justify-center items-center">
-      {post}
-    </div>
-  );
+  return <div className="p-5 flex flex-col overflow-scroll justify-center items-center w-full">{post}</div>;
 };
 
 export default YourPostsPage;

@@ -9,6 +9,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Ban, MoreHorizontal, StopCircle, StopCircleIcon, Trash } from "lucide-react";
 import { deletePost } from "@/lib/actions/deletepost";
 import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 
 export const PostCard = ({
   title,
@@ -21,6 +22,8 @@ export const PostCard = ({
 }: Pick<Posts, "summary" | "title" | "id" | "username" | "createdAt" | "imageUrl"> & {
   currentUsername: string;
 }) => {
+  const router = useRouter();
+
   return (
     <div className="p-3 flex flex-col h-full max-w-3xl w-full items-start justify-center mt-2 border-b-[1px] bg-background">
       <div className="flex w-full mb-2 items-center justify-between">
@@ -33,8 +36,9 @@ export const PostCard = ({
                 <Image src={imageUrl} alt="profile picture" fill referrerPolicy="no-referrer" />
               ) : null}
             </Avatar>
-            <h3 className="text-lg">{username} · </h3>
+            <h3 className="text-lg hover:underline">{username}</h3>
           </Link>
+          <span className="text-sm"> ·</span>
           <span className="text-zinc-600 text-sm"> {format(new Date(createdAt), "MMM dd")}</span>
         </div>
         <div className="ml-auto flex items-center">
@@ -48,7 +52,11 @@ export const PostCard = ({
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="bg-white">
               {username === currentUsername ? (
-                <DropdownMenuItem onClick={() => deletePost(id)}>
+                <DropdownMenuItem
+                  onClick={() => {
+                    deletePost(id);
+                    router.refresh();
+                  }}>
                   <p className="flex hover:cursor-pointer">
                     <Trash className="h-4 w-4 mr-2" />
                     Delete
