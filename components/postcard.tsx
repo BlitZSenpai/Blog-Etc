@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Avatar } from "./ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
-import { MoreHorizontal, Trash } from "lucide-react";
+import { Ban, MoreHorizontal, StopCircle, StopCircleIcon, Trash } from "lucide-react";
 import { deletePost } from "@/lib/actions/deletepost";
 import { Button } from "./ui/button";
 
@@ -23,18 +23,20 @@ export const PostCard = ({
 }) => {
   return (
     <div className="p-3 flex flex-col h-full max-w-3xl w-full items-start justify-center mt-2 border-b-[1px] bg-background">
-      <div className="flex flex-row gap-2 mb-2  items-center">
-        <Link
-          href={`/${username}/posts`}
-          className="flex flex-row gap-2 items-center hover:cursor-pointer justify-between">
-          <Avatar className="h-8 w-8">
-            {imageUrl ? (
-              <Image src={imageUrl} alt="profile picture" fill referrerPolicy="no-referrer" />
-            ) : null}
-          </Avatar>
-          <h3 className="text-lg">{username} · </h3>
-        </Link>
-        <span className="text-zinc-600 text-sm"> {format(new Date(createdAt), "MMM dd")}</span>
+      <div className="flex w-full mb-2 items-center justify-between">
+        <div className="flex items-center justify-center gap-2">
+          <Link
+            href={`/${username}/posts`}
+            className="flex flex-row gap-2 items-center hover:cursor-pointer ">
+            <Avatar className="h-8 w-8">
+              {imageUrl ? (
+                <Image src={imageUrl} alt="profile picture" fill referrerPolicy="no-referrer" />
+              ) : null}
+            </Avatar>
+            <h3 className="text-lg">{username} · </h3>
+          </Link>
+          <span className="text-zinc-600 text-sm"> {format(new Date(createdAt), "MMM dd")}</span>
+        </div>
         <div className="ml-auto flex items-center">
           <DropdownMenu>
             <DropdownMenuTrigger onClick={(e) => e.stopPropagation} asChild>
@@ -45,15 +47,18 @@ export const PostCard = ({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="bg-white">
-              {username === currentUsername && (
+              {username === currentUsername ? (
                 <DropdownMenuItem onClick={() => deletePost(id)}>
                   <p className="flex hover:cursor-pointer">
                     <Trash className="h-4 w-4 mr-2" />
                     Delete
                   </p>
                 </DropdownMenuItem>
+              ) : (
+                <DropdownMenuItem className="flex items-center hover:cursor-pointer">
+                  <Ban className="h-4 w-4 mr-1.5" /> Not interested
+                </DropdownMenuItem>
               )}
-              <DropdownMenuItem>Show less posts</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
