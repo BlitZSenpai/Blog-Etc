@@ -28,9 +28,7 @@ export const PostCard = ({
     <div className="p-3 flex flex-col h-full max-w-3xl w-full items-start justify-center mt-2 border-b-[1px] bg-background">
       <div className="flex w-full mb-2 items-center justify-between">
         <div className="flex items-center justify-center gap-2">
-          <Link
-            href={`/${username}/posts`}
-            className="flex flex-row gap-2 items-center hover:cursor-pointer ">
+          <Link href={`/${username}/posts`} className="flex flex-row gap-2 items-center hover:cursor-pointer">
             <Avatar className="h-8 w-8">
               {imageUrl ? (
                 <Image src={imageUrl} alt="profile picture" fill referrerPolicy="no-referrer" />

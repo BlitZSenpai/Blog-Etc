@@ -5,6 +5,7 @@ import { currentUser } from "@clerk/nextjs";
 import { format } from "date-fns";
 import Image from "next/image";
 import { MoreOptions } from "../../../_components/moreoptions";
+import Link from "next/link";
 
 interface PostPageProps {
   params: { postId: string };
@@ -33,14 +34,21 @@ const PostPage = async ({ params }: PostPageProps) => {
             </span>
           </CardTitle>
           <CardDescription className="text-xl mb-5">{post?.summary}</CardDescription>
-          <div className="flex items-center gap-1 space-x-1">
-            <Avatar className="h-8 w-8">
-              {post?.imageUrl ? (
-                <Image src={post.imageUrl} alt="profile picture" fill referrerPolicy="no-referrer" />
-              ) : null}
-            </Avatar>
-            <p className="text-lg text-black">{post?.username} · </p>
-            <span className="text-zinc-600 text-sm"> {format(new Date(post?.createdAt!), "MMM dd")}</span>
+          <div className="flex items-center text-center gap-1 space-x-1">
+            <Link
+              href={`/${post.username}/posts`}
+              className="flex flex-row gap-2 items-center hover:cursor-pointer">
+              <Avatar className="h-8 w-8">
+                {post?.imageUrl ? (
+                  <Image src={post.imageUrl} alt="profile picture" fill referrerPolicy="no-referrer" />
+                ) : null}
+              </Avatar>
+              <p className="text-lg text-black hover:underline">{post?.username} </p>
+            </Link>
+            <span className="text-sm"> ·</span>
+            <span className="text-zinc-600 flex items-center text-sm">
+              {format(new Date(post?.createdAt!), "MMM dd")}
+            </span>
           </div>
         </CardHeader>
         <CardContent>
