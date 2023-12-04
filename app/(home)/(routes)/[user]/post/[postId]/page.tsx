@@ -4,6 +4,7 @@ import { db } from "@/lib/prismadb";
 import { currentUser } from "@clerk/nextjs";
 import { format } from "date-fns";
 import Image from "next/image";
+import { MoreOptions } from "../../../_components/moreoptions";
 
 interface PostPageProps {
   params: { postId: string };
@@ -11,17 +12,26 @@ interface PostPageProps {
 
 const PostPage = async ({ params }: PostPageProps) => {
   const user = await currentUser();
+  if (!user) throw new Error("Unauthorized");
+
   const post = await db.posts.findFirst({
     where: {
       id: params.postId,
     },
   });
 
+  if (!post) throw new Error("No posts found!");
+
   return (
     <div className="flex flex-col justify-center items-center m-auto">
       <Card className="flex flex-col justify-start w-full  h-screen p-2 items-start max-w-3xl">
         <CardHeader className="my-1 space-y-3">
-          <CardTitle className="text-5xl font-bold">{post?.title}</CardTitle>
+          <CardTitle className="text-5xl font-bold w-fit flex">
+            {post?.title}
+            <span>
+              <MoreOptions postUsername={post.username} currentUsername={user.username!} postId={post.id} />
+            </span>
+          </CardTitle>
           <CardDescription className="text-xl mb-5">{post?.summary}</CardDescription>
           <div className="flex items-center gap-1 space-x-1">
             <Avatar className="h-8 w-8">

@@ -20,7 +20,7 @@ interface MoreOptionsProps {
 export const MoreOptions = ({ postUsername, currentUsername, postId }: MoreOptionsProps) => {
   const router = useRouter();
   return (
-    <div className="ml-auto flex items-center">
+    <div>
       <DropdownMenu>
         <DropdownMenuTrigger onClick={(e) => e.stopPropagation} asChild>
           <Button variant="ghost" className=" h-full hover:text-zinc-950 text-zinc-600  ml-auto rounded-sm">
