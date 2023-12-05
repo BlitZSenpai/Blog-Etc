@@ -35,8 +35,10 @@ export const FormComponent = ({ username }: { username: string }) => {
   });
 
   const onEditorChange = useCallback(
-    (blocknote: BlockNoteEditor) => {
-      form.setValue("description", JSON.stringify(blocknote.topLevelBlocks, null, 2));
+    (editor: BlockNoteEditor) => {
+      const description = JSON.stringify(editor.topLevelBlocks, null, 2);
+
+      form.setValue("description", description);
     },
     [form]
   );
