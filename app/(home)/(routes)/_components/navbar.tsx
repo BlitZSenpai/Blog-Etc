@@ -6,7 +6,7 @@ import { currentUser } from "@clerk/nextjs";
 export const Navbar = async () => {
   const user = await currentUser();
   return (
-    <div className="w-full flex top-0 bg-background justify-between p-6 px-20 border-b border-slate-200 ">
+    <div className="w-full flex top-0 bg-background justify-between p-6 px-20 border-b border-slate-200">
       <Link href="/home">
         <Logo />
       </Link>

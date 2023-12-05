@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { SignInButton, auth, currentUser } from "@clerk/nextjs";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,7 +20,7 @@ const LandingPage = async () => {
           <div>
             <Link href="/home">
               <Button size="lg" className="mt-2 text-lg">
-                Start reading
+                Start reading <ArrowRight className="h-4 w-4 ml-1.5" />
               </Button>
             </Link>
           </div>

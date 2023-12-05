@@ -7,20 +7,22 @@ import Link from "next/link";
 export const LandingNavbar = async () => {
   const user = await currentUser();
   return (
-    <div className="w-full flex fixed top-0 bg-background items-center p-6 md:px-32 px-16 border-b border-b-black">
+    <div className="w-full flex fixed top-0 bg-background items-center p-6 md:px-32 px-16 border-b border-slate-200">
       <Logo />
       <div className="md:ml-auto md:justify-end justify-end  w-full flex items-center gap-x-2">
         {!!user ? (
-          <>
+          <div className="flex justify-between items-center gap-2">
             <Link href="/home">
-              <Button variant="ghost">Enter Bob</Button>
+              <Button variant="outline" className="mr-2">
+                Enter Etc
+              </Button>
             </Link>
             <UserNavbar
               name={user?.username!}
               imageUrl={user?.imageUrl}
               email={user?.emailAddresses[0].emailAddress}
             />
-          </>
+          </div>
         ) : (
           <>
             <SignInButton mode="modal">

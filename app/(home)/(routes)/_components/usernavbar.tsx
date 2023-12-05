@@ -20,8 +20,8 @@ export const UserNavbar = ({ imageUrl, name, email }: navbarProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="overflow-visible">
-        <Button className="rounded-full h-8 w-8 aspect-square bg-zinc-400">
-          <Avatar className="relative h-8 w-8">
+        <Button className="rounded-full h-10 w-10 aspect-square bg-zinc-400">
+          <Avatar className="relative h-10 w-10">
             {imageUrl ? (
               <Image src={imageUrl} alt="profile picture" fill referrerPolicy="no-referrer" />
             ) : null}
