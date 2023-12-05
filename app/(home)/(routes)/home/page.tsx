@@ -10,7 +10,7 @@ const HomePage = async () => {
   const posts = await db.posts.findMany();
 
   return (
-    <div className="p-5 flex flex-col overflow-scroll justify-center items-center w-full">
+    <div className="p-2 flex flex-col overflow-scroll justify-center items-center w-full">
       {posts.map((post) => (
         <PostCard
           key={post.id}
