@@ -10,7 +10,7 @@ const YourPostsPage = async ({ params }: YourPostsPageProps) => {
   const user = await currentUser();
   if (!user) throw new Error("Unauthorized");
 
-  const posts = await userPosts({ username: params.user });
+  const posts = (await userPosts({ username: params.user })).reverse();
 
   const post = posts.map((post) => (
     <PostCard

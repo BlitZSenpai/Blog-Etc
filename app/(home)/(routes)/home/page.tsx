@@ -7,7 +7,7 @@ const HomePage = async () => {
 
   if (!user) throw new Error("Unauthorized");
 
-  const posts = await db.posts.findMany();
+  const posts = (await db.posts.findMany()).reverse();
 
   return (
     <div className="p-2 flex flex-col overflow-scroll justify-center items-center w-full">
