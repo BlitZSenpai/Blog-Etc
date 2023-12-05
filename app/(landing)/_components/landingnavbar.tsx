@@ -1,22 +1,25 @@
-"use server";
-
+import { UserNavbar } from "@/app/(home)/(routes)/_components/usernavbar";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
-import { SignInButton, SignUpButton, UserButton, auth, currentUser } from "@clerk/nextjs";
+import { SignInButton, SignUpButton, currentUser } from "@clerk/nextjs";
 import Link from "next/link";
 
-export const LandingNavbar = () => {
-  const { userId } = auth();
+export const LandingNavbar = async () => {
+  const user = await currentUser();
   return (
     <div className="w-full flex fixed top-0 bg-background items-center p-6 md:px-32 px-16 border-b border-b-black">
       <Logo />
       <div className="md:ml-auto md:justify-end justify-end  w-full flex items-center gap-x-2">
-        {userId ? (
+        {!!user ? (
           <>
             <Link href="/home">
               <Button variant="ghost">Enter Bob</Button>
             </Link>
-            <UserButton afterSignOutUrl="/" />
+            <UserNavbar
+              name={user?.username!}
+              imageUrl={user?.imageUrl}
+              email={user?.emailAddresses[0].emailAddress}
+            />
           </>
         ) : (
           <>
