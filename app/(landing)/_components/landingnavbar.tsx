@@ -14,7 +14,7 @@ export const LandingNavbar = async () => {
           <div className="flex justify-between items-center gap-2">
             <Link href="/home">
               <Button variant="outline" className="mr-2">
-                Enter Etc
+                Enter Wrapped
               </Button>
             </Link>
             <UserNavbar
