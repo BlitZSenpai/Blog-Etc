@@ -69,6 +69,7 @@ export const FormComponent = ({ username }: { username: string }) => {
             <FormItem>
               <FormControl>
                 <Input
+                  autoComplete="off"
                   placeholder="Title"
                   className="border-none focus-visible:ring-0 focus-visible:ring-offset-0"
                   {...field}
