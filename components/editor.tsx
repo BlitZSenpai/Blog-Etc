@@ -1,16 +1,17 @@
 "use client";
 
-import { BlockNoteEditor } from "@blocknote/core";
+import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
 import { BlockNoteView, useBlockNote } from "@blocknote/react";
 import "@blocknote/core/style.css";
 import { useEffect, useState } from "react";
 
 interface Props {
-  onEditorChange: (blocknote: BlockNoteEditor) => void;
+  onEditorChange?: (blocknote: BlockNoteEditor) => void;
   editable?: boolean;
+  initialContent?: string;
 }
 
-const Editor = ({ onEditorChange, editable }: Props) => {
+const Editor = ({ onEditorChange, editable, initialContent }: Props) => {
   const [client, setClient] = useState(false);
 
   useEffect(() => {
@@ -19,6 +20,7 @@ const Editor = ({ onEditorChange, editable }: Props) => {
 
   const editor: BlockNoteEditor = useBlockNote({
     editable,
+    initialContent: initialContent ? (JSON.parse(initialContent) as PartialBlock[]) : undefined,
     onEditorContentChange: onEditorChange,
   });
   if (!client) {
