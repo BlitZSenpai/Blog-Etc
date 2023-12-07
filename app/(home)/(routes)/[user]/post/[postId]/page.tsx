@@ -26,7 +26,7 @@ const PostPage = async ({ params }: PostPageProps) => {
 
   return (
     <div className="flex flex-col justify-center items-center m-auto bg-background border-none">
-      <Card className="flex flex-col justify-start w-full  h-screen p-2 items-start border-none max-w-3xl">
+      <Card className="flex flex-col justify-start w-full h-full p-2 items-start border-none max-w-3xl">
         <CardHeader className="my-1 w-full space-y-3">
           <CardTitle className="text-5xl font-bold w-full gap-2 leading-tight flex">{post?.title}</CardTitle>
           <CardDescription className="text-xl mb-5">{post?.summary}</CardDescription>
