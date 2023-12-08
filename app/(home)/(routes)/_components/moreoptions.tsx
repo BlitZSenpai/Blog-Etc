@@ -35,7 +35,7 @@ export const MoreOptions = ({ postUsername, currentUsername, postId }: MoreOptio
                 router.refresh();
                 router.push(`/${postUsername}/posts`);
               }}>
-              <p className="flex hover:cursor-pointer">
+              <p className="flex w-full hover:cursor-pointer">
                 <Trash className="h-4 w-4 mr-2" />
                 Delete
               </p>

@@ -8,7 +8,13 @@ export const LandingNavbar = async () => {
   const user = await currentUser();
   return (
     <div className="w-full flex fixed top-0 bg-background items-center p-6 md:px-32 px-16 border-b border-slate-200">
-      <Logo />
+      {!!user ? (
+        <Link href="/home">
+          <Logo />
+        </Link>
+      ) : (
+        <Logo />
+      )}
       <div className="md:ml-auto md:justify-end justify-end  w-full flex items-center gap-x-2">
         {!!user ? (
           <div className="flex justify-between items-center gap-2">

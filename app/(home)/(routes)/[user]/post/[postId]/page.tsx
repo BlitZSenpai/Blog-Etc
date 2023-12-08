@@ -7,6 +7,7 @@ import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import { MoreOptions } from "../../../_components/moreoptions";
+import { redirect } from "next/navigation";
 
 interface PostPageProps {
   params: { postId: string };
@@ -14,7 +15,7 @@ interface PostPageProps {
 
 const PostPage = async ({ params }: PostPageProps) => {
   const user = await currentUser();
-  if (!user) throw new Error("Unauthorized");
+  if (!user) redirect("/");
 
   const post = await db.posts.findFirst({
     where: {
@@ -22,7 +23,9 @@ const PostPage = async ({ params }: PostPageProps) => {
     },
   });
 
-  if (!post) throw new Error("No posts found!");
+  if (!post) {
+    redirect("/home");
+  }
 
   return (
     <div className="flex flex-col justify-center items-center m-auto bg-background border-none">

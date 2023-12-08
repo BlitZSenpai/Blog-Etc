@@ -14,7 +14,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 
-const formSchema = z.object({
+export const formSchema = z.object({
   title: z.string(),
   summary: z.string().optional(),
   description: z.string(),
@@ -61,52 +61,54 @@ export const FormComponent = ({ username }: { username: string }) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 ">
-        <FormField
-          control={form.control}
-          name="title"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input
-                  autoComplete="off"
-                  placeholder="Title"
-                  className="border-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                  {...field}
-                />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="summary"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Textarea
-                  className="resize-none border-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                  placeholder="Summarize your story"
-                  {...field}
-                />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="description"
-          render={() => (
-            <FormItem className="absolute left-0 w-full">
-              <FormLabel className="pl-[3.2rem] text-md">Description:</FormLabel>
-              <FormControl>
-                <Editor onEditorChange={onEditorChange} />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <div className="absolute -right-20 -bottom-52">
-          <PostButton />
+      <form>
+        <div className="space-y-8">
+          <FormField
+            control={form.control}
+            name="title"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    autoComplete="off"
+                    placeholder="Title"
+                    className="border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                    {...field}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="summary"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Textarea
+                    className="resize-none border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                    placeholder="Summarize your story"
+                    {...field}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="description"
+            render={() => (
+              <FormItem className="-ml-10 w-full min-h-[40vh]">
+                <FormLabel className="pl-[3.2rem] text-md">Description:</FormLabel>
+                <FormControl>
+                  <Editor onEditorChange={onEditorChange} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className="ml-3">
+          <PostButton onClick={(...args) => form.handleSubmit(onSubmit)(...args)} />
         </div>
       </form>
     </Form>

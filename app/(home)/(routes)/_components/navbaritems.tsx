@@ -17,7 +17,7 @@ export const NavbarItems = ({ imageUrl, name, email }: navbarProps) => {
   return (
     <div className="flex items-center gap-3">
       {pathname === "/home" && <CreateButton />}
-      {pathname === "/home/create-post" && <PostButton />}
+      {/* {pathname === "/home/create-post" && <PostButton />} */}
       <UserNavbar name={name} imageUrl={imageUrl} email={email} />
     </div>
   );
