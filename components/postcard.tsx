@@ -55,13 +55,13 @@ export const PostCard = ({
                     deletePost(id);
                     router.refresh();
                   }}>
-                  <p className="flex hover:cursor-pointer">
+                  <p className="flex hover:cursor-pointer w-full">
                     <Trash className="h-4 w-4 mr-2" />
                     Delete
                   </p>
                 </DropdownMenuItem>
               ) : (
-                <DropdownMenuItem className="flex items-center hover:cursor-pointer">
+                <DropdownMenuItem className="flex w-full items-center hover:cursor-pointer">
                   <Ban className="h-4 w-4 mr-1.5" /> Not interested
                 </DropdownMenuItem>
               )}

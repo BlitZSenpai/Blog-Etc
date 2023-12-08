@@ -44,11 +44,14 @@ export const FormComponent = ({ username }: { username: string }) => {
   );
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    setIsSubmitting(true);
-    const post = await createPost(data);
+    try {
+      setIsSubmitting(true);
+      const post = await createPost(data);
 
-    router.push(`/${username}/post/${post.id}`);
-    setIsSubmitting(false);
+      router.push(`/${username}/post/${post.id}`);
+    } catch (error) {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitting) {
