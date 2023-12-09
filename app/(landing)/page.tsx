@@ -9,12 +9,12 @@ import Link from "next/link";
 const LandingPage = async () => {
   const { userId } = auth();
   return (
-    <div className="flex justify-between gap-y-4 md:px-32 px-16 py-36 relative">
+    <div className="flex justify-between gap-y-4 md:px-32 px-12 py-36 relative">
       <div className="max-w-3xl space-y-5 flex-col  justify-center">
-        <h1 className="font-bold md:text-8xl sm:text-6xl text-7xl pb-1">Stay curious.</h1>
+        <h1 className="font-bold md:text-8xl sm:text-6xl text-7xl leading-0 pb-1">Stay curious.</h1>
         <h2 className="sm:text-xl md:text-2xl text-xl font-medium">
-          Discover stories, thinking, and expertise <br />
-          from writers on any topic
+          Discover stories, thinking, and expertise <br className="hidden md:block" />
+          from writers on any topic.
         </h2>
         {userId ? (
           <div>

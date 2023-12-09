@@ -7,7 +7,7 @@ import Link from "next/link";
 export const LandingNavbar = async () => {
   const user = await currentUser();
   return (
-    <div className="w-full flex fixed top-0 bg-background items-center p-6 md:px-32 px-16 border-b border-slate-200">
+    <div className="w-full flex fixed top-0 bg-background items-center p-6 md:px-32 px-10 border-b border-slate-200">
       {!!user ? (
         <Link href="/home">
           <Logo />
@@ -17,7 +17,7 @@ export const LandingNavbar = async () => {
       )}
       <div className="md:ml-auto md:justify-end justify-end  w-full flex items-center gap-x-2">
         {!!user ? (
-          <div className="flex justify-between items-center gap-2">
+          <div className="flex md:justify-between items-center gap-2">
             <Link href="/home">
               <Button variant="outline" className="mr-2">
                 Enter Wrapped
