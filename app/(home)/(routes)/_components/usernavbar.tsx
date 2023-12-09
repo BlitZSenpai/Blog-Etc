@@ -14,6 +14,7 @@ import { navbarProps } from "./navbaritems";
 import Link from "next/link";
 import { SignOutButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
+import { Github, Linkedin } from "lucide-react";
 
 export const UserNavbar = ({ imageUrl, name, email }: navbarProps) => {
   const router = useRouter();
@@ -52,6 +53,23 @@ export const UserNavbar = ({ imageUrl, name, email }: navbarProps) => {
           <p className="w-full cursor-pointer pl-2.5">
             <SignOutButton signOutCallback={() => router.push("/")}>Log out</SignOutButton>
           </p>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild className="hover:bg-none">
+          <div className="flex gap-2">
+            <Link
+              target="_blank"
+              className="cursor-pointer hover:bg-zinc-300 p-0.5"
+              href={"https://www.linkedin.com/in/koushik-yemula/"}>
+              <Linkedin className="h-5 w-5" />
+            </Link>
+            <Link
+              target="_blank"
+              className="cursor-pointer hover:bg-zinc-300 p-0.5"
+              href={"/home/create-post"}>
+              <Github className="h-5 w-5" />
+            </Link>
+          </div>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
