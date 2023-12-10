@@ -1,11 +1,14 @@
 import { PostCard } from "@/components/postcard";
 import { db } from "@/lib/prismadb";
 import { currentUser } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 const HomePage = async () => {
   const user = await currentUser();
 
-  if (!user) throw new Error("Unauthorized");
+  if (!user) {
+    redirect("/");
+  }
 
   const posts = (await db.posts.findMany()).reverse();
 

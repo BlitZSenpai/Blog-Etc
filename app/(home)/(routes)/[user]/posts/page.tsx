@@ -1,6 +1,7 @@
 import { PostCard } from "@/components/postcard";
 import { userPosts } from "@/lib/actions/userposts";
 import { currentUser } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 interface YourPostsPageProps {
   params: { user: string };
@@ -8,7 +9,9 @@ interface YourPostsPageProps {
 
 const YourPostsPage = async ({ params }: YourPostsPageProps) => {
   const user = await currentUser();
-  if (!user) throw new Error("Unauthorized");
+  if (!user) {
+    redirect("/");
+  }
 
   const posts = (await userPosts({ username: params.user })).reverse();
 
