@@ -38,7 +38,7 @@ const PostPage = async ({ params }: PostPageProps) => {
               <Link
                 href={`/${post.username}/posts`}
                 className="flex flex-row gap-2 items-center hover:cursor-pointer">
-                <Avatar className="h-8 w-8">
+                <Avatar className="h-10 w-10">
                   {post?.imageUrl ? (
                     <Image src={post.imageUrl} alt="profile picture" fill referrerPolicy="no-referrer" />
                   ) : null}
