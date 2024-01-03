@@ -4,7 +4,9 @@ import { currentUser } from "@clerk/nextjs";
 const CreatePost = async () => {
   const user = await currentUser();
 
-  if (!user?.username) return null;
+  if (!user?.username) {
+    throw new Error("Username not found");
+  }
 
   return (
     <div className="md:p-10 p-9 relative md:max-w-3xl lg:mx-w-4xl mx-auto">

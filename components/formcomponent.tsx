@@ -15,9 +15,9 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 
 export const formSchema = z.object({
-  title: z.string(),
+  title: z.string().min(3),
   summary: z.string().optional(),
-  description: z.string(),
+  description: z.string().min(200),
 });
 
 export const FormComponent = ({ username }: { username: string }) => {

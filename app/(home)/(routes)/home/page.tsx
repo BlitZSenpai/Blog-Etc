@@ -12,6 +12,10 @@ const HomePage = async () => {
 
   const posts = (await db.posts.findMany()).reverse();
 
+  if (!posts) {
+    throw new Error("Not found");
+  }
+
   return (
     <div className="p-2 flex flex-col overflow-scroll justify-center items-center w-full">
       {posts.map((post) => (

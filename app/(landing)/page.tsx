@@ -8,6 +8,7 @@ import Link from "next/link";
 
 const LandingPage = async () => {
   const { userId } = auth();
+
   return (
     <div className="flex justify-between gap-y-4 md:px-32 px-12 py-36 relative">
       <div className="max-w-3xl space-y-5 flex-col  justify-center">

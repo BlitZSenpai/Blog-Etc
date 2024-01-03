@@ -15,6 +15,10 @@ const YourPostsPage = async ({ params }: YourPostsPageProps) => {
 
   const posts = (await userPosts({ username: params.user })).reverse();
 
+  if (!posts) {
+    throw new Error("Not found");
+  }
+
   const post = posts.map((post) => (
     <PostCard
       imageUrl={post.imageUrl}
