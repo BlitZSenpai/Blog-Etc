@@ -43,7 +43,7 @@ const PostPage = async ({ params }: PostPageProps) => {
                     <Image src={post.imageUrl} alt="profile picture" fill referrerPolicy="no-referrer" />
                   ) : null}
                 </Avatar>
-                <p className="text-lg text-black hover:underline">{post?.username} </p>
+                <p className="text-lg text-black hover:underline capitalize">{post?.username} </p>
               </Link>
               <span className="text-sm"> ·</span>
               <span className="text-zinc-600 flex items-center text-sm">

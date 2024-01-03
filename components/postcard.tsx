@@ -34,7 +34,7 @@ export const PostCard = ({
                 <Image src={imageUrl} alt="profile picture" fill referrerPolicy="no-referrer" />
               ) : null}
             </Avatar>
-            <h3 className="text-lg hover:underline">{username}</h3>
+            <h3 className="text-lg hover:underline capitalize">{username}</h3>
           </Link>
           <span className="text-sm"> ·</span>
           <span className="text-zinc-600 text-sm"> {format(new Date(createdAt), "MMM dd")}</span>
