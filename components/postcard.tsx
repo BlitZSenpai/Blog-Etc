@@ -1,15 +1,16 @@
 "use client";
 
+import { deletePost } from "@/lib/actions/deletepost";
 import { Posts } from "@prisma/client";
 import { format } from "date-fns";
+import { Ban, MoreHorizontal, Trash } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Avatar } from "./ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
-import { Ban, MoreHorizontal, StopCircle, StopCircleIcon, Trash } from "lucide-react";
-import { deletePost } from "@/lib/actions/deletepost";
-import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
+import { Avatar } from "./ui/avatar";
+import { Button } from "./ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { Views } from "./views";
 
 export const PostCard = ({
   title,
@@ -19,8 +20,10 @@ export const PostCard = ({
   createdAt,
   imageUrl,
   currentUsername,
+  slug,
 }: Pick<Posts, "summary" | "title" | "id" | "username" | "createdAt" | "imageUrl"> & {
   currentUsername: string;
+  slug: string;
 }) => {
   const router = useRouter();
 
@@ -77,6 +80,9 @@ export const PostCard = ({
           </p>
         </div>
       </Link>
+      <div className="ml-1">
+        <Views slug={slug} />
+      </div>
     </div>
   );
 };

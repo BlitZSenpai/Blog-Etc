@@ -17,7 +17,7 @@ const LandingPage = async () => {
           Discover stories, thinking, and expertise <br className="hidden md:block" />
           from writers on any topic.
         </h2>
-        {userId ? (
+        {userId && (
           <div>
             <Link href="/home">
               <Button size="lg" className="mt-2 text-lg">
@@ -25,7 +25,8 @@ const LandingPage = async () => {
               </Button>
             </Link>
           </div>
-        ) : (
+        )}
+        {!userId && (
           <div>
             <SignInButton mode="modal">
               <Button size="lg" className="mt-2 text-lg">
@@ -36,7 +37,7 @@ const LandingPage = async () => {
         )}
       </div>
       <div className="absolute right-36 top-14">
-        <Image src="/hero.svg" height="450" width="450" alt="text" className="hidden lg:block" />
+        <Image src="/hero.svg" height="450" width="450" alt="text" className="hidden xl:block" />
       </div>
     </div>
   );

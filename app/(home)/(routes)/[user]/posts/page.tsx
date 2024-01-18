@@ -29,6 +29,7 @@ const YourPostsPage = async ({ params }: YourPostsPageProps) => {
       title={post.title}
       summary={post.summary}
       currentUsername={user?.username!}
+      slug={params.user}
     />
   ));
 

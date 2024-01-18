@@ -8,12 +8,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { MoreOptions } from "../../../_components/moreoptions";
 import { redirect } from "next/navigation";
+import { increment } from "@/lib/actions/views";
+import { Views } from "@/components/views";
 
 interface PostPageProps {
   params: { postId: string };
 }
 
 const PostPage = async ({ params }: PostPageProps) => {
+  const cachedIncrement = async (slug: string): Promise<number> => {
+    const number = await increment(slug);
+    return number;
+  };
+
   const user = await currentUser();
   if (!user) redirect("/");
 
@@ -49,6 +56,8 @@ const PostPage = async ({ params }: PostPageProps) => {
               <span className="text-zinc-600 flex items-center text-sm">
                 {format(new Date(post?.createdAt!), "MMM dd")}
               </span>
+              <span className="text-sm"> ·</span>
+              <Views slug={params.postId} cachedIncrement={cachedIncrement} />
             </div>
             <span>
               <MoreOptions postUsername={post.username} currentUsername={user.username!} postId={post.id} />

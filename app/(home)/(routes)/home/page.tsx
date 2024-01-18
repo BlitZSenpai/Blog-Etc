@@ -28,6 +28,7 @@ const HomePage = async () => {
           imageUrl={post.imageUrl}
           username={post.username}
           currentUsername={user?.username!}
+          slug={post.id}
         />
       ))}
     </div>
