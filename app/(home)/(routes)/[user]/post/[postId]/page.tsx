@@ -10,16 +10,14 @@ import { MoreOptions } from "../../../_components/moreoptions";
 import { redirect } from "next/navigation";
 import { increment } from "@/lib/actions/views";
 import { Views } from "@/components/views";
+import { cache } from "react";
 
 interface PostPageProps {
   params: { postId: string };
 }
 
 const PostPage = async ({ params }: PostPageProps) => {
-  const cachedIncrement = async (slug: string): Promise<number> => {
-    const number = await increment(slug);
-    return number;
-  };
+  const cachedIncrement = cache(increment);
 
   const user = await currentUser();
   if (!user) redirect("/");
@@ -47,7 +45,13 @@ const PostPage = async ({ params }: PostPageProps) => {
                 className="flex flex-row gap-2 items-center hover:cursor-pointer">
                 <Avatar className="h-10 w-10">
                   {post?.imageUrl ? (
-                    <Image src={post.imageUrl} alt="profile picture" fill referrerPolicy="no-referrer" />
+                    <Image
+                      src={post.imageUrl}
+                      sizes="md"
+                      alt="profile picture"
+                      fill
+                      referrerPolicy="no-referrer"
+                    />
                   ) : null}
                 </Avatar>
                 <p className="text-lg text-black hover:underline capitalize">{post?.username} </p>
@@ -57,7 +61,9 @@ const PostPage = async ({ params }: PostPageProps) => {
                 {format(new Date(post?.createdAt!), "MMM dd")}
               </span>
               <span className="text-sm"> ·</span>
-              <Views slug={params.postId} cachedIncrement={cachedIncrement} />
+              <div>
+                <Views slug={params.postId} cachedIncrement={cachedIncrement} />
+              </div>
             </div>
             <span>
               <MoreOptions postUsername={post.username} currentUsername={user.username!} postId={post.id} />
