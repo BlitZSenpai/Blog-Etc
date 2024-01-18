@@ -16,9 +16,9 @@ interface PostPageProps {
   params: { postId: string };
 }
 
-const PostPage = async ({ params }: PostPageProps) => {
-  const cachedIncrement = cache(increment);
+const cachedIncrement = cache(increment);
 
+const PostPage = async ({ params }: PostPageProps) => {
   const user = await currentUser();
   if (!user) redirect("/");
 
