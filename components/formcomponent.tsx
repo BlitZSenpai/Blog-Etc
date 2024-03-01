@@ -7,12 +7,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
+import { toast } from "sonner";
 
 export const formSchema = z.object({
   title: z.string().min(3),
@@ -21,6 +22,7 @@ export const formSchema = z.object({
 });
 
 export const FormComponent = ({ username }: { username: string }) => {
+  const [isPending, startTransition] = useTransition();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const Editor = useMemo(() => dynamic(() => import("@/components/editor"), { ssr: false }), []);
 
@@ -43,15 +45,22 @@ export const FormComponent = ({ username }: { username: string }) => {
     [form]
   );
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    try {
+  const onSubmit = (data: z.infer<typeof formSchema>) => {
+    startTransition(() => {
       setIsSubmitting(true);
-      const post = await createPost(data);
+      createPost(data).then((data) => {
+        toast.success("New post has been created");
+        router.push(`/${username}/post/${data.id}`);
+      });
+    });
+    // try {
+    //   setIsSubmitting(true);
+    //   const post = await createPost(data);
 
-      router.push(`/${username}/post/${post.id}`);
-    } catch (error) {
-      setIsSubmitting(false);
-    }
+    //   router.push(`/${username}/post/${post.id}`);
+    // } catch (error) {
+    //   setIsSubmitting(false);
+    // }
   };
 
   if (isSubmitting) {
