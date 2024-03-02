@@ -23,7 +23,6 @@ export const formSchema = z.object({
 
 export const FormComponent = ({ username }: { username: string }) => {
   const [isPending, startTransition] = useTransition();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const Editor = useMemo(() => dynamic(() => import("@/components/editor"), { ssr: false }), []);
 
   const router = useRouter();
@@ -47,25 +46,18 @@ export const FormComponent = ({ username }: { username: string }) => {
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     startTransition(() => {
-      setIsSubmitting(true);
-      createPost(data).then((data) => {
-        toast.success("New post has been created");
-        router.push(`/${username}/post/${data.id}`);
-      });
+      createPost(data)
+        .then((data) => {
+          toast.success("New post has been created");
+          router.push(`/${username}/post/${data.id}`);
+        })
+        .catch(() => toast.error("Something went wrong!"));
     });
-    // try {
-    //   setIsSubmitting(true);
-    //   const post = await createPost(data);
-
-    //   router.push(`/${username}/post/${post.id}`);
-    // } catch (error) {
-    //   setIsSubmitting(false);
-    // }
   };
 
-  if (isSubmitting) {
+  if (isPending) {
     return (
-      <div className="flex h-full w-full items-center justify-center">
+      <div className="flex h-[90dvh] w-full items-center justify-center">
         <Loader2 className="w-4 h-4 animate-spin" />
       </div>
     );
