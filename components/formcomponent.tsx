@@ -10,14 +10,14 @@ import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { toast } from "sonner";
 
 export const formSchema = z.object({
-  title: z.string().min(3),
-  summary: z.string().optional(),
+  title: z.string().min(10),
+  summary: z.string().min(10).optional(),
   description: z.string().min(200),
 });
 
@@ -80,6 +80,7 @@ export const FormComponent = ({ username }: { username: string }) => {
                     {...field}
                   />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -95,6 +96,7 @@ export const FormComponent = ({ username }: { username: string }) => {
                     {...field}
                   />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -107,6 +109,7 @@ export const FormComponent = ({ username }: { username: string }) => {
                 <FormControl>
                   <Editor onEditorChange={onEditorChange} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
