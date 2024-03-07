@@ -17,7 +17,7 @@ const HomePage = async () => {
   }
 
   return (
-    <div className="p-2 flex flex-col overflow-scroll justify-center items-center w-full">
+    <div className="p-2 flex flex-col overflow-auto justify-center items-center w-full">
       {posts.map((post) => (
         <PostCard
           key={post.id}

@@ -33,7 +33,7 @@ const YourPostsPage = async ({ params }: YourPostsPageProps) => {
     />
   ));
 
-  return <div className="p-2 flex flex-col overflow-scroll justify-center items-center w-full">{post}</div>;
+  return <div className="p-2 flex flex-col overflow-auto justify-center items-center w-full">{post}</div>;
 };
 
 export default YourPostsPage;
