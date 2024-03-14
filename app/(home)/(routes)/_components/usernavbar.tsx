@@ -66,7 +66,7 @@ export const UserNavbar = ({ imageUrl, name, email }: navbarProps) => {
             <Link
               target="_blank"
               className="cursor-pointer hover:bg-zinc-300 p-0.5"
-              href={"https://github.com/BlitZSenpai"}>
+              href={"https://github.com/koushikyemula"}>
               <Github className="h-5 w-5" />
             </Link>
           </div>
