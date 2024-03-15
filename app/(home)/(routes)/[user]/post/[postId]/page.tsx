@@ -12,6 +12,11 @@ import { increment } from "@/lib/actions/views";
 import { Views } from "@/components/views";
 import { cache } from "react";
 
+export const metadata = {
+  title: "Post",
+  description: "Read a post from a user",
+};
+
 interface PostPageProps {
   params: { postId: string };
 }

@@ -3,6 +3,11 @@ import { userPosts } from "@/lib/actions/userposts";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
+export const metadata = {
+  title: "Your Posts",
+  description: "Find your posts here!",
+};
+
 interface YourPostsPageProps {
   params: { user: string };
 }
