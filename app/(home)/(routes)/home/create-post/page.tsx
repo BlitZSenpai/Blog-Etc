@@ -1,6 +1,11 @@
 import { FormComponent } from "@/components/formcomponent";
 import { currentUser } from "@clerk/nextjs";
 
+export const metadata = {
+  title: "Create Post",
+  description: "Create a post!",
+};
+
 const CreatePost = async () => {
   const user = await currentUser();
 

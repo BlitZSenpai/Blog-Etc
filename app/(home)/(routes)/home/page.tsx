@@ -3,6 +3,11 @@ import { db } from "@/lib/prismadb";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
+export const metadata = {
+  title: "Home",
+  description: "Find all the posts here!",
+};
+
 const HomePage = async () => {
   const user = await currentUser();
 
