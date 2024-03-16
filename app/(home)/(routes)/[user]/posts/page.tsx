@@ -14,9 +14,7 @@ interface YourPostsPageProps {
 
 const YourPostsPage = async ({ params }: YourPostsPageProps) => {
   const user = await currentUser();
-  if (!user) {
-    redirect("/");
-  }
+  if (!user || !user.username) redirect("/");
 
   const posts = (await userPosts({ username: params.user })).reverse();
 

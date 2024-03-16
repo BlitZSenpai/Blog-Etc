@@ -24,8 +24,8 @@ interface PostPageProps {
 const cachedIncrement = cache(increment);
 
 const PostPage = async ({ params }: PostPageProps) => {
-  const user = await currentUser();
-  if (!user) redirect("/");
+  const clerkUser = await currentUser();
+  if (!clerkUser || !clerkUser.username) redirect("/");
 
   const post = await db.posts.findFirst({
     where: {
@@ -71,7 +71,11 @@ const PostPage = async ({ params }: PostPageProps) => {
               </div>
             </div>
             <span>
-              <MoreOptions postUsername={post.username} currentUsername={user.username!} postId={post.id} />
+              <MoreOptions
+                postUsername={post.username}
+                currentUsername={clerkUser.username}
+                postId={post.id}
+              />
             </span>
           </div>
         </CardHeader>
