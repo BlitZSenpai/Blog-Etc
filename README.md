@@ -24,9 +24,9 @@ Wrapped is a minimalist blog website that makes it easy for users to share their
 ## Getting Started
 
 1.  Clone the repository: `git clone https://github.com/koushikyemula/Blog-Wrapped`
-2.  Install dependencies: `npm install`
+2.  Install dependencies: `pnpm install`
 3.  Configure environment variables for Clerk, MongoDB, and other services.
-4.  Run the development server: `npm run dev`
+4.  Run the development server: `pnpm dev`
 
 ## Contributing
 
