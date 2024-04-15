@@ -56,16 +56,16 @@ export const UserNavbar = ({ imageUrl, name, email }: navbarProps) => {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild className="hover:bg-none">
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2">
             <Link
               target="_blank"
-              className="cursor-pointer hover:bg-zinc-300 p-0.5"
+              className="cursor-pointer size-8  rounded-md hover:bg-zinc-300 p-1.5"
               href={"https://www.linkedin.com/in/koushik-yemula/"}>
               <Linkedin className="h-5 w-5" />
             </Link>
             <Link
               target="_blank"
-              className="cursor-pointer hover:bg-zinc-300 p-0.5"
+              className="cursor-pointer size-8  rounded-md hover:bg-zinc-300 p-1.5"
               href={"https://github.com/koushikyemula"}>
               <Github className="h-5 w-5" />
             </Link>
