@@ -1,6 +1,7 @@
 import { PostCard } from "@/components/postcard";
 import { userPosts } from "@/lib/actions/userposts";
 import { currentUser } from "@clerk/nextjs";
+import { Loader2 } from "lucide-react";
 import { redirect } from "next/navigation";
 
 export const metadata = {
@@ -21,6 +22,13 @@ const YourPostsPage = async ({ params }: YourPostsPageProps) => {
   if (!posts) {
     throw new Error("Not found");
   }
+
+  // if (posts === undefined)
+  //   return (
+  //     <div className="h-full w-full flex items-center justify-center">
+  //       <Loader2 className="size-6 animate-spin transition-all" />
+  //     </div>
+  //   );
 
   const post = posts.map((post) => (
     <PostCard

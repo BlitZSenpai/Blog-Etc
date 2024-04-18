@@ -6,6 +6,7 @@ import Link from "next/link";
 
 export const LandingNavbar = async () => {
   const user = await currentUser();
+  if (!user || !user.username) throw new Error("User not found");
   return (
     <div className="w-full flex fixed top-0 bg-background items-center p-6 md:px-32 px-10 border-b border-slate-200">
       {!!user ? (
@@ -24,9 +25,9 @@ export const LandingNavbar = async () => {
               </Button>
             </Link>
             <UserNavbar
-              name={user?.username!}
-              imageUrl={user?.imageUrl}
-              email={user?.emailAddresses[0].emailAddress}
+              name={user.username}
+              imageUrl={user.imageUrl}
+              email={user.emailAddresses[0].emailAddress}
             />
           </div>
         ) : (
