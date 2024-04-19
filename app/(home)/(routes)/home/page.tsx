@@ -11,14 +11,14 @@ export const metadata = {
 const HomePage = async () => {
   const user = await currentUser();
 
-  if (!user) {
-    redirect("/");
-  }
-
   const posts = (await db.posts.findMany()).reverse();
 
   if (!posts) {
     throw new Error("Not found");
+  }
+
+  if (!user || !user.username) {
+    throw new Error("User not found");
   }
 
   return (
@@ -32,7 +32,7 @@ const HomePage = async () => {
           createdAt={post.createdAt}
           imageUrl={post.imageUrl}
           username={post.username}
-          currentUsername={user?.username!}
+          currentUsername={user.username as string}
           slug={post.id}
         />
       ))}
