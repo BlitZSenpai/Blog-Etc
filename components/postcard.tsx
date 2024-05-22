@@ -76,16 +76,4 @@ export const PostCard = ({
   );
 };
 
-const PostSkeleton = () => (
-  <div className="p-2 flex flex-col overflow-auto justify-center items-center w-full">
-    {[...Array(6)].map((_, index) => (
-      <div
-        key={index}
-        className="p-3 flex flex-col h-full max-w-3xl w-full items-start justify-center mt-2 border-b-[1px] bg-background">
-        <div className="flex justify-between gap-2">
-          <Skeleton className="h-14 w-[300px]" />
-        </div>
-      </div>
-    ))}
-  </div>
-);
+

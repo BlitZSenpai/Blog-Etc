@@ -6,7 +6,6 @@ import Link from "next/link";
 
 export const LandingNavbar = async () => {
   const user = await currentUser();
-  if (!user || !user.username) throw new Error("User not found");
   return (
     <div className="w-full flex fixed top-0 bg-background items-center p-6 md:px-32 px-10 border-b border-slate-200">
       {!!user ? (
@@ -17,7 +16,7 @@ export const LandingNavbar = async () => {
         <Logo />
       )}
       <div className="md:ml-auto md:justify-end justify-end  w-full flex items-center gap-x-2">
-        {!!user ? (
+        {!!user && user.username ? (
           <div className="flex md:justify-between items-center gap-2">
             <Link href="/home">
               <Button variant="outline" className="mr-2">
