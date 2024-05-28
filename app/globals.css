@@ -8,6 +8,11 @@ body,
   height: 100%;
 }
 
+*::selection {
+  background-color: #0c0c0c;
+  color: #fdfdfc;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
