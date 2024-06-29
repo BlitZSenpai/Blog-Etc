@@ -1,7 +1,9 @@
 "use server";
 
 import { Button } from "@/components/ui/button";
-import { SignInButton, auth } from "@clerk/nextjs";
+import { SignInButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,10 +12,10 @@ const LandingPage = async () => {
   const { userId } = auth();
 
   return (
-    <div className="flex justify-between gap-y-4 md:px-32 px-12 py-36 relative">
-      <div className="max-w-3xl space-y-5 flex-col  justify-center">
-        <h1 className="font-bold md:text-8xl sm:text-6xl text-7xl leading-0 pb-1">Stay curious.</h1>
-        <h2 className="sm:text-xl md:text-2xl text-xl font-medium">
+    <div className="relative flex justify-between px-12 gap-y-4 md:px-32 py-36">
+      <div className="flex-col justify-center max-w-3xl space-y-5">
+        <h1 className="pb-1 font-bold md:text-8xl sm:text-6xl text-7xl leading-0">Stay curious.</h1>
+        <h2 className="text-xl font-medium sm:text-xl md:text-2xl">
           Discover stories, thinking, and expertise <br className="hidden md:block" />
           from writers on any topic.
         </h2>

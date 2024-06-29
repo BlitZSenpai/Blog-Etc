@@ -1,5 +1,5 @@
 import { FormComponent } from "@/components/formcomponent";
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 
 export const metadata = {
   title: "Create Post",

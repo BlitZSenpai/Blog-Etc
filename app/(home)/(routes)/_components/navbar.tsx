@@ -1,7 +1,7 @@
 import { Logo } from "@/components/logo";
 import Link from "next/link";
 import { NavbarItems } from "./navbaritems";
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 
 export const Navbar = async () => {
   const user = await currentUser();

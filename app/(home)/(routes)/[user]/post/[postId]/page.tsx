@@ -2,7 +2,7 @@ import Editor from "@/components/editor";
 import { Avatar } from "@/components/ui/avatar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from "@/lib/prismadb";
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";

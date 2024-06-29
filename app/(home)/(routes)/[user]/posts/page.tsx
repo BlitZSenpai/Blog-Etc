@@ -1,7 +1,7 @@
 import { PostCard } from "@/components/postcard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { userPosts } from "@/lib/actions/userposts";
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import { Loader2 } from "lucide-react";
 import { redirect } from "next/navigation";
 

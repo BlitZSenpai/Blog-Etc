@@ -1,13 +1,15 @@
 import { UserNavbar } from "@/app/(home)/(routes)/_components/usernavbar";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
-import { SignInButton, SignUpButton, currentUser } from "@clerk/nextjs";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
+
 import Link from "next/link";
 
 export const LandingNavbar = async () => {
   const user = await currentUser();
   return (
-    <div className="w-full flex fixed top-0 bg-background items-center p-6 md:px-32 px-10 border-b border-slate-200">
+    <div className="fixed top-0 flex items-center w-full p-6 px-10 border-b bg-background md:px-32 border-slate-200">
       {!!user ? (
         <Link href="/home">
           <Logo />
@@ -15,9 +17,9 @@ export const LandingNavbar = async () => {
       ) : (
         <Logo />
       )}
-      <div className="md:ml-auto md:justify-end justify-end  w-full flex items-center gap-x-2">
+      <div className="flex items-center justify-end w-full md:ml-auto md:justify-end gap-x-2">
         {!!user && user.username ? (
-          <div className="flex md:justify-between items-center gap-2">
+          <div className="flex items-center gap-2 md:justify-between">
             <Link href="/home">
               <Button variant="outline" className="mr-2">
                 Enter Wrapped

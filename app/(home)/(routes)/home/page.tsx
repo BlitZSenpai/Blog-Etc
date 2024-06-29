@@ -1,7 +1,8 @@
 import { PostCard } from "@/components/postcard";
 import { db } from "@/lib/prismadb";
-import { currentUser } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+import { Post } from "@/types/types";
+
+import { currentUser } from "@clerk/nextjs/server";
 
 export const metadata = {
   title: "Home",
@@ -22,8 +23,8 @@ const HomePage = async () => {
   }
 
   return (
-    <div className="p-2 flex flex-col overflow-auto justify-center items-center w-full">
-      {posts.map((post) => (
+    <div className="flex flex-col items-center justify-center w-full p-2 overflow-auto">
+      {posts.map((post: Post) => (
         <PostCard
           key={post.id}
           title={post.title}
